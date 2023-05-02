@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node.js and MongoDB CRUD Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Request Form</h1>
+    <form action="/addRequest" method="post">
+        <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" class="form-control" id="fullname" name="fullname" required>
+        </div>
+        <div class="form-group">
+            <label for="company">Company's name</label>
+            <input type="text" class="form-control" id="company" name="company" required>
+        </div>
+        <div class="form-group">
+            <label for="type">Project type</label>
+            <input type="text" class="form-control" id="type" name="type" required>
+        </div>
+        <div class="form-group">
+            <label for="file">Upload file</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" class="form-control" name="phone" placeholder="123-456-7890" required>
+        </div>
+        <div class="form-group">
+            <label for="confirmPhone">Confirm Phone Number:</label>
+            <input type="tel" id="confirmPhone" class="form-control" name="confirmPhone" placeholder="123-456-7890" required>
+            <div class="invalid-feedback">Phone numbers must match.</div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <input type="text" class="form-control" id="comment" name="comment" required>
+        </div>
+        
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+
+    <h1>Requests</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Company's name</th>
+                <th>Project type</th>
+                <th>Files</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (requests && requests.length) { %>
+            <% requests.forEach(request => { %>
+                <tr>
+                    <td><%= request.fullname %></td>
+                    <td><%= request.company %></td>
+                    <td><%= request.type %></td>
+                    <td><%= request.file %></td>
+                    <td><%= request.email %></td>
+                    <td><%= request.phone %></td>
+                    <td><%= request.comment %></td>
+                </tr>
+            <% }); %>
+            <% } else { %>
+                <p>No requests found.</p>
+                <% } %>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 
-function Users() {
-    const [users, setUsers] = useState([]);
+function News() {
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         async function fetchUsers() {
             try {
-                const response = await axios.get('http://localhost:4001/user');
-                setUsers(response.data);
+                const response = await axios.get('http://localhost:4001/posts');
+                setPosts(response.data);
                 console.log(response.data); // Check if data is received
             } catch (err) {
                 console.error(err);
@@ -23,8 +23,8 @@ function Users() {
     async function handleDeleteUser(id) {
         console.log('Deleting user with id:', id);
         try {
-            await axios.delete(`http://localhost:4001/user/${id}`);
-            setUsers(users.filter(user => user._id !== id));
+            await axios.delete(`http://localhost:4001/post/${id}`);
+            setPosts(posts.filter(post => post._id !== id));
         } catch (err) {
             console.error(err);
         }
@@ -34,35 +34,32 @@ function Users() {
 
     return (
         <div className="container">
-        <h1>Users</h1>
+        <h1>Posts</h1>
+        <button class="btn btn-primary">Add Post</button>
         <table className="table table-bordered">
             <thead className="thead-dark">
             <tr>
                 <th>id</th>
-                <th>Full Name</th>
-                <th>Username</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Email</th>
+                <th>Title</th>
+                <th>Body</th>
                 <th>Action</th>
+                
             </tr>
             </thead>
             <tbody>
             
-            {users.map(user => (
-                <tr key={user._id}>
-                    <td>{user._id}</td>
-                    <td>{user.fullname}</td>
-                    <td>{user.username}</td>
-                    <td>{user.age}</td>
-                    <td>{user.gender}</td>
-                    <td>{user.email}</td>
+            {posts.map(post => (
+                <tr key={post._id}>
+                    <td>{post._id}</td>
+                    <td>{post.title}</td>
+                    <td>{post.body}</td>
+                    
                     <td>
-                        <button className='btn' >
+                        <button className='bttn' >
                             <FontAwesomeIcon icon={faEdit} size="lg" color="#333" style={{ marginRight: '10px' }} />
                             </button>
-                        <button className='btn'>
-                            <FontAwesomeIcon icon={faTrashAlt} size="lg" color="#333" onClick={() => handleDeleteUser(user._id)} />
+                        <button className='bttn'>
+                            <FontAwesomeIcon icon={faTrashAlt} size="lg" color="#333" onClick={() => handleDeleteUser(post._id)} />
                         </button>
                     </td>
                 </tr>
@@ -73,4 +70,4 @@ function Users() {
     );
 }
 
-export default Users;
+export default News;

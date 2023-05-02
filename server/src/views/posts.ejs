@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node.js and MongoDB CRUD Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Posts Form</h1>
+    <form action="/addPost" method="POST">
+        <div class="form-group">
+            <label for="title">Post title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="body">Username</label>
+            <input type="text" class="form-control" id="body" name="body" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <h1>Posts</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Body</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% posts.forEach(post => { %>
+                <tr>
+                    <td><%= post.title %></td>
+                    <td><%= post.body %></td>
+                    
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+        
+</form>
+</div>
+</body>
+</html>
