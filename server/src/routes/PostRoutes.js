@@ -43,7 +43,7 @@ router.get('/posts/form', async(req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-// Display all requests
+// Display all posts
 router.get('/posts', async (req, res) => {
     try {
         const posts = await Post.find().exec();

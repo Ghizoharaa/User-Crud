@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/UserRoutes')
 const requestsRoutes = require('./routes/RequestsRouter')
 const postRoutes = require('./routes/PostRoutes')
+const servicesRoute = require('./routes/ServicesRoutes')
 const app = express();
 app.use(cors());
 
@@ -38,6 +39,13 @@ app.get('/posts/form', postRoutes)
 app.post('/addPost', postRoutes)
 app.get('/posts', postRoutes)
 app.delete('/post/:id', postRoutes)
+
+// Service Routes
+
+app.get('/services/form', servicesRoute)
+app.post('/addService', servicesRoute)
+app.get('/services', servicesRoute)
+app.delete('/service/:id', servicesRoute)
 
 
 
